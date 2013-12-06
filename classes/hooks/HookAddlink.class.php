@@ -23,6 +23,9 @@ class PluginDrafts_HookAddlink extends Hook
             if (Config::Get('plugin.drafts.show_personal') || Config::Get('plugin.drafts.show_blog')) {
                 $this->AddHook('template_menu_blog_index_item', 'InjectIndexLink');
             }
+            if (Config::Get('plugin.drafts.show_profile')) {
+                $this->AddHook('template_menu_profile_created_item', 'InjectProfileLink');
+            }
         }
     }
 
@@ -45,6 +48,14 @@ class PluginDrafts_HookAddlink extends Hook
     public function InjectLogLink($aParam)
     {
         $sTemplatePath = Plugin::GetTemplatePath(__CLASS__) . 'inject_log_link.tpl';
+        if ($this->Viewer_TemplateExists($sTemplatePath)) {
+            return $this->Viewer_Fetch($sTemplatePath);
+        }
+    }
+
+    public function InjectProfileLink($aParam)
+    {
+        $sTemplatePath = Plugin::GetTemplatePath(__CLASS__) . 'inject_profile_link.tpl';
         if ($this->Viewer_TemplateExists($sTemplatePath)) {
             return $this->Viewer_Fetch($sTemplatePath);
         }

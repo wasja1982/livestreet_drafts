@@ -15,5 +15,8 @@ $config['show_personal']=true;
 // Отображать черновики из блогов.
 $config['show_blog']=true;
 
+// Отображать черновики в профилях пользователей.
+$config['show_profile']=true;
+
 return $config;
 ?>

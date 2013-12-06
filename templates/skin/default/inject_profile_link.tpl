@@ -1,0 +1,1 @@
+<li {if $sMenuSubItemSelect=='draft'}class="active"{/if}><a href="{$oUserProfile->getUserWebPath()}created/draft/">{$aLang.plugin.drafts.drafts}  {if $iCountDraftUser} ({$iCountDraftUser}) {/if}</a></li>

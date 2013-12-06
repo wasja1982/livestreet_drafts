@@ -19,7 +19,7 @@ if (!class_exists('Plugin')) {
 class PluginDrafts extends Plugin {
 
     protected $aInherits = array(
-        'action' => array('ActionBlog', 'ActionPersonalBlog', 'ActionIndex'),
+        'action' => array('ActionBlog', 'ActionPersonalBlog', 'ActionIndex', 'ActionProfile'),
         'module' => array('ModuleTopic'),
     );
 
