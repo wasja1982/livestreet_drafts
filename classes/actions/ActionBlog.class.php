@@ -39,8 +39,7 @@ class PluginDrafts_ActionBlog extends PluginDrafts_Inherit_ActionBlog
     protected function EventShowBlog() {
         $sShowType=$this->GetParamEventMatch(0,0);
         if ($sShowType != 'draft') {
-            parent::EventShowBlog();
-            return;
+            return parent::EventShowBlog();
         }
 
         $sBlogUrl=$this->sCurrentEvent;
