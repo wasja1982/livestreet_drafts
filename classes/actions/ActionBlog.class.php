@@ -32,6 +32,20 @@ class PluginDrafts_ActionBlog extends PluginDrafts_Inherit_ActionBlog
         parent::RegisterEvent();
     }
 
+	/**
+	 * Показ всех топиков
+	 *
+	 */
+	protected function EventTopics() {
+		$sShowType = $this->sCurrentEvent;
+        if ($sShowType == 'draft') {
+            if (!$this->User_GetUserCurrent() || !$this->User_GetUserCurrent()->isAdministrator()) {
+                return parent::EventNotFound();
+            }
+        }
+        return parent::EventTopics();
+    }
+
     /**
      * Вывод топиков из определенного блога
      *
@@ -41,7 +55,9 @@ class PluginDrafts_ActionBlog extends PluginDrafts_Inherit_ActionBlog
         if ($sShowType != 'draft') {
             return parent::EventShowBlog();
         }
-
+        if (!$this->User_GetUserCurrent() || !$this->User_GetUserCurrent()->isAdministrator()) {
+            return parent::EventNotFound();
+        }
         $sBlogUrl=$this->sCurrentEvent;
         /**
          * Проверяем есть ли блог с таким УРЛ

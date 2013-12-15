@@ -113,40 +113,40 @@ class PluginDrafts_ModuleTopic extends PluginDrafts_Inherit_ModuleTopic {
             return $this->GetTopicsByFilter($aFilter,$iPage,$iPerPage);
         }
     }
-	/**
-	 * Получает список черновиков по юзеру
-	 *
-	 * @param int $sUserId	ID пользователя
-	 * @param int $iPage	Номер страницы
-	 * @param int $iPerPage	Количество элементов на страницу
-	 * @return array
-	 */
-	public function GetDraftsPersonalByUser($sUserId,$iPage,$iPerPage) {
-		$aFilter=array(
-			'topic_publish' => 0,
-			'user_id' => $sUserId,
-			'blog_type' => array('open','personal','close'),
-		);
-		return $this->GetTopicsByFilter($aFilter,$iPage,$iPerPage);
-	}
-	/**
-	 * Возвращает количество черновиков которые создал юзер
-	 *
-	 * @param int $sUserId	ID пользователя
-	 * @return array
-	 */
-	public function GetCountDraftsPersonalByUser($sUserId) {
-		$aFilter=array(
-			'topic_publish' => 0,
-			'user_id' => $sUserId,
-			'blog_type' => array('open','personal','close'),
-		);
-		$s=serialize($aFilter);
-		if (false === ($data = $this->Cache_Get("topic_draft_count_user_{$s}"))) {
-			$data = $this->oMapperTopic->GetCountTopics($aFilter);
-			$this->Cache_Set($data, "topic_draft_count_user_{$s}", array("topic_draft_update_user_{$sUserId}"), 60*60*24);
-		}
-		return 	$data;
-	}
+    /**
+     * Получает список черновиков по юзеру
+     *
+     * @param int $sUserId	ID пользователя
+     * @param int $iPage	Номер страницы
+     * @param int $iPerPage	Количество элементов на страницу
+     * @return array
+     */
+    public function GetDraftsPersonalByUser($sUserId,$iPage,$iPerPage) {
+        $aFilter=array(
+            'topic_publish' => 0,
+            'user_id' => $sUserId,
+            'blog_type' => array('open','personal','close'),
+        );
+        return $this->GetTopicsByFilter($aFilter,$iPage,$iPerPage);
+    }
+    /**
+     * Возвращает количество черновиков которые создал юзер
+     *
+     * @param int $sUserId	ID пользователя
+     * @return array
+     */
+    public function GetCountDraftsPersonalByUser($sUserId) {
+        $aFilter=array(
+            'topic_publish' => 0,
+            'user_id' => $sUserId,
+            'blog_type' => array('open','personal','close'),
+        );
+        $s=serialize($aFilter);
+        if (false === ($data = $this->Cache_Get("topic_draft_count_user_{$s}"))) {
+            $data = $this->oMapperTopic->GetCountTopics($aFilter);
+            $this->Cache_Set($data, "topic_draft_count_user_{$s}", array("topic_draft_update_user_{$sUserId}"), 60*60*24);
+        }
+        return 	$data;
+    }
 }
 ?>

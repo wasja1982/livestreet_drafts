@@ -21,5 +21,19 @@ class PluginDrafts_ActionPersonalBlog extends PluginDrafts_Inherit_ActionPersona
         }
         parent::RegisterEvent();
     }
+
+	/**
+	 * Показ всех топиков
+	 *
+	 */
+	protected function EventTopics() {
+		$sShowType = $this->sCurrentEvent;
+        if ($sShowType == 'draft') {
+            if (!$this->User_GetUserCurrent() || !$this->User_GetUserCurrent()->isAdministrator()) {
+                return parent::EventNotFound();
+            }
+        }
+        return parent::EventTopics();
+    }
 }
 ?>

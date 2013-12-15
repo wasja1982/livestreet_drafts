@@ -26,6 +26,9 @@ class PluginDrafts_ActionIndex extends PluginDrafts_Inherit_ActionIndex
      * Вывод всех черновиков
      */
     protected function EventDraft() {
+        if (!$this->User_GetUserCurrent() || !$this->User_GetUserCurrent()->isAdministrator()) {
+            return parent::EventNotFound();
+        }
         $this->Viewer_SetHtmlRssAlternate(Router::GetPath('rss').'draft/',Config::Get('view.name'));
         /**
          * Меню
