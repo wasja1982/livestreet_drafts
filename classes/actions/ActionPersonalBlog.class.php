@@ -2,7 +2,7 @@
 /**
  * Drafts - доступ к черновикам пользователей
  *
- * Версия:	1.0.1
+ * Версия:	1.0.2
  * Автор:	Александр Вереник
  * Профиль:	http://livestreet.ru/profile/Wasja/
  * GitHub:	https://github.com/wasja1982/livestreet_drafts
@@ -22,12 +22,12 @@ class PluginDrafts_ActionPersonalBlog extends PluginDrafts_Inherit_ActionPersona
         parent::RegisterEvent();
     }
 
-	/**
-	 * Показ всех топиков
-	 *
-	 */
-	protected function EventTopics() {
-		$sShowType = $this->sCurrentEvent;
+    /**
+     * Показ всех топиков
+     *
+     */
+    protected function EventTopics() {
+        $sShowType = $this->sCurrentEvent;
         if ($sShowType == 'draft') {
             if (!$this->User_GetUserCurrent() || !$this->User_GetUserCurrent()->isAdministrator()) {
                 return parent::EventNotFound();
